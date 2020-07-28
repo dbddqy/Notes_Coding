@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-post">
+  <html class="light page-archives201811">
 
 
 <head>
   <meta charset="utf-8">
   
-  <title>[Theory] [Probabilistic Robotics] ch2 | Yue</title>
+  <title>Archives: 2018/11 | Yue</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="probabilistic robotics,robotics," />
+    <meta name="keywords" content="Yue, Architecture, Robotics, Computer Vision, Design" />
   
 
-  <meta name="description" content="Recursive State EstimationConditional Independencex and y are independent under the condition z:$$p(x,y|z) &#x3D; p(x|z)p(y|z) \tag{2.17}$$ which is equivalent to:$$\begin{cases}     p(x|z) &#x3D; p(x|z,y)\\ p(">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[Theory] [Probabilistic Robotics] ch2">
-<meta property="og:url" content="https://dbddqy.github.io/2020/07/23/t_probabilistic-robotics-ch2/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Yue">
+<meta property="og:url" content="https://dbddqy.github.io/archives/2018/11/index.html">
 <meta property="og:site_name" content="Yue">
-<meta property="og:description" content="Recursive State EstimationConditional Independencex and y are independent under the condition z:$$p(x,y|z) &#x3D; p(x|z)p(y|z) \tag{2.17}$$ which is equivalent to:$$\begin{cases}     p(x|z) &#x3D; p(x|z,y)\\ p(">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/dbddqy/Note/blob/master/Probabilistic_Robotics/pics/HMM.png?raw=true">
-<meta property="article:published_time" content="2020-07-22T22:55:22.000Z">
-<meta property="article:modified_time" content="2020-07-28T00:05:41.581Z">
 <meta property="article:author" content="Yue Qi">
-<meta property="article:tag" content="probabilistic robotics">
-<meta property="article:tag" content="robotics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/dbddqy/Note/blob/master/Probabilistic_Robotics/pics/HMM.png?raw=true">
 
   
 
@@ -105,8 +97,17 @@ ga('send', 'pageview');
     <span id="toolbox-mobile" class="toolbox-mobile">Home</span>
   
 
-  <div class="post-header CENTER">
-   
+  <div class="content content-archive">
+  <div class="page-header">
+
+  
+    <div class="breadcrumb">
+      <div class="location">Blog</div>
+      <i class="icon-location"></i>
+    </div>
+  
+
+  
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
       <span class="toolbox-entry-text">Home</span>
@@ -185,97 +186,51 @@ ga('send', 'pageview');
   </div>
 
 
-</div>
 
-
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Recursive-State-Estimation"><span class="toc-text">Recursive State Estimation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Independence"><span class="toc-text">Conditional Independence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Probabilistic-Generative-Laws"><span class="toc-text">Probabilistic Generative Laws</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Belief-Distributions"><span class="toc-text">Belief Distributions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bayes-Filters"><span class="toc-text">Bayes Filters</span></a></li></ol></li></ol>
-  </div>
-
-
-
-<div class="content content-post CENTER">
-   <article id="post-t_probabilistic-robotics-ch2" class="article article-type-post" itemprop="blogPost">
-  <header class="article-header">
-    <h1 class="post-title">[Theory] [Probabilistic Robotics] ch2</h1>
-
-    <div class="article-meta">
-      <span>
-        <i class="icon-calendar"></i>
-        <span>2020.07.23</span>
-      </span>
-
-      
-        <span class="article-author">
-          <i class="icon-user"></i>
-          <span>Yue Qi</span>
-        </span>
-      
-
-      
-  <span class="article-category">
-    <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/theory/">theory</a>
-  </span>
-
-
-
-      
-
-      
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
-      
+  <div class="box-blog-info">
+    <a class="avatar" href="/">
+      <img src="/images/me.png" alt="" />
+    </a>
+    <div class="info">
+      <h3 class="name" style="font-family: PoiretOne-Regular">
+        YUE
+      </h3>
+      <div class="slogan">
+        keep observing, keep creating
+      </div>
     </div>
-  </header>
-
-  <div class="article-content">
-    
-      <h1 id="Recursive-State-Estimation"><a href="#Recursive-State-Estimation" class="headerlink" title="Recursive State Estimation"></a>Recursive State Estimation</h1><h2 id="Conditional-Independence"><a href="#Conditional-Independence" class="headerlink" title="Conditional Independence"></a>Conditional Independence</h2><p><em>x</em> and <em>y</em> are independent under the condition <em>z</em>:<br>$$<br>p(x,y|z) = p(x|z)p(y|z) \tag{2.17}<br>$$</p>
-<p>which is equivalent to:<br>$$<br>\begin{cases}<br>     p(x|z) = p(x|z,y)<br>\\ p(y|z) = p(y|z,x) \tag{2.18-19}<br>\end{cases}<br>$$<br><strong>Proof</strong>:</p>
-<p>WLOG, insert (2.18) into (2.17) right side, get<br>$$<br>p(x|z,y)p(y|z) = \frac{p(x|z,y)p(y,z)}{p(z)} = \frac{p(x,y,z)}{p(z)} = p(x,y|z)<br>$$<br>however x and y are not necessarily independent, see book (2.20-21)</p>
-<h2 id="Probabilistic-Generative-Laws"><a href="#Probabilistic-Generative-Laws" class="headerlink" title="Probabilistic Generative Laws"></a>Probabilistic Generative Laws</h2><p><strong>Robot States</strong>: x<sub>0</sub>, x<sub>1</sub>, … , x<sub>t</sub></p>
-<p><strong>Environment Measurement</strong>: z<sub>1</sub>, … , z<sub>t</sub></p>
-<p><strong>Control data</strong>: u<sub>1</sub>, … , u<sub>t</sub></p>
-<p>(assume take action u first, than take measurement z)</p>
-<p>If x is <strong>complete</strong>, then x<sub>t</sub> only depends on x<sub>t-1</sub> and u<sub>t</sub>:<br>$$<br>p(x_t|x_{0:t-1},z_{1:t-1},u_{1:t}) = p(x_t|x_{t-1}, u_t) \tag{2.31}<br>$$<br>and z<sub>t</sub> depends only on x<sub>t</sub>:<br>$$<br>p(z_t|x_{0:t},z_{1:t-1},u_{1:t}) = p(z_t|x_t) \tag{2.32}<br>$$<br>(2.31) is called <strong>state transition probability</strong> and (2.32) is called <strong>measurement probability</strong>. They together form the <strong>Hidden Markov Model</strong>.</p>
-<p><img src="https://github.com/dbddqy/Note/blob/master/Probabilistic_Robotics/pics/HMM.png?raw=true" alt=""></p>
-<h2 id="Belief-Distributions"><a href="#Belief-Distributions" class="headerlink" title="Belief Distributions"></a>Belief Distributions</h2><p><strong>Belief</strong>: with all the measurements and control data, the distribution of state <em>x</em>, where the robot believes it is.</p>
-<p>Before measurement:<br>$$<br>\overline{bel}(x_t) = p(x_t | z_{1:t-1}, u_{1:t}) \tag{2.34}<br>$$<br>After measurement:<br>$$<br>bel(x_t) = p(x_t | z_{1:t}, u_{1:t}) \tag{2.33}<br>$$</p>
-<h2 id="Bayes-Filters"><a href="#Bayes-Filters" class="headerlink" title="Bayes Filters"></a>Bayes Filters</h2><p><strong>Prediction</strong>:<br>$$<br>\overline{bel}(x_i) = \int{p(x_t | u_t, x_{t-1})bel(x_{t-1})}dx_{t-1}<br>$$<br><strong>Correction</strong> (measurement update):<br>$$<br>bel(x_i) = \eta{p(z_t | x_t)\overline{bel}(x_t)}<br>$$</p>
-
-    
   </div>
-
-</article>
-
-
-   
-
-   
-  <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/11/28/p-mahjong-scorer/">
-        <i class="icon icon-angle-left"></i>
-    </a>
-    <a class="hide pull-right" href="/">
-        <i class="icon icon-angle-right"></i>
-    </a>
-  </div>
-
-
-
 
 </div>
 
 
-  <a id="backTop" class="back-top">
-    <i class="icon-angle-up"></i>
-  </a>
+  <div class="post-list-box archive-body">
+    <ul class="list-post">  <li class="item-year item item-title item-title-3">
+    <a href="/archives/2018" class="text-year">
+      2018
+      <i class="icon-gou"></i>
+      
+    </a>
+  </li>
+<li class="item-post item">
+  <span class="post-date">11-28</span>
+
+  
+  <a class="post-title" href="/2018/11/28/p-mahjong-scorer/">p_mahjong_scorer</a>
+
+
+</li>
+</ul>
+  </div>
+
+  <div class="archive-footer">
+    
+
+  </div>
+</div>
+
+
+
 
 
 
@@ -363,24 +318,6 @@ ga('send', 'pageview');
 </div>
 
 
-
-  
-      <div class="fexo-comments comments-post">
-    
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-
-  </div>
 
   
 
