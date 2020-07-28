@@ -17,7 +17,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Yue">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="https://dbddqy.github.io/index.html">
 <meta property="og:site_name" content="Yue">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Yue Qi">
@@ -98,13 +98,13 @@ ga('send', 'pageview');
   
   <div class="content-home text-center">
   <a class="avatar" href="/">
-    <img src="/images/avatar.jpg" alt="" />
+    <img src="/images/me.png" alt="" />
   </a>
-  <h1 class="name" style="font-family: calligraffittiregular">
-    Yue
+  <h1 class="name" style="font-family: PoiretOne-Regular">
+    YUE
   </h1>
   <div class="slogan">
-    Keep observing, keep creating.
+    keep observing, keep creating
   </div>
 
   <hr>
@@ -113,7 +113,14 @@ ga('send', 'pageview');
     
       <li class="item">
         
-          <a href="/archives">Blog</a>
+          <a href="/archives/">All</a>
+        
+        <span>|</span>
+      </li>
+    
+      <li class="item">
+        
+          <a href="/category/">Category</a>
         
         <span>|</span>
       </li>
@@ -134,7 +141,7 @@ ga('send', 'pageview');
     
       <li class="item">
         
-          <a href="https://twitter.com/forsigner" rel="noopener noreferrer" target="_blank">Twitter</a>
+          <a href="/about/">About</a>
         
         <span>|</span>
       </li>
@@ -159,18 +166,18 @@ ga('send', 'pageview');
         
           <li class="item-toolbox">
             <a
-              class="CIRCLE"
+              class="ROUND_RECT"
               href="/archives/"
               rel="noopener noreferrer"
               target="_self"
               >
-              Time Line
+              All
             </a>
           </li>
         
           <li class="item-toolbox">
             <a
-              class="CIRCLE"
+              class="ROUND_RECT"
               href="/category/"
               rel="noopener noreferrer"
               target="_self"
@@ -181,7 +188,7 @@ ga('send', 'pageview');
         
           <li class="item-toolbox">
             <a
-              class="CIRCLE"
+              class="ROUND_RECT"
               href="/tag/"
               rel="noopener noreferrer"
               target="_self"
@@ -192,18 +199,18 @@ ga('send', 'pageview');
         
           <li class="item-toolbox">
             <a
-              class="CIRCLE"
-              href="/link/"
+              class="ROUND_RECT"
+              href="/project/"
               rel="noopener noreferrer"
               target="_self"
               >
-              Link
+              Project
             </a>
           </li>
         
           <li class="item-toolbox">
             <a
-              class="CIRCLE"
+              class="ROUND_RECT"
               href="/about/"
               rel="noopener noreferrer"
               target="_self"
@@ -214,7 +221,7 @@ ga('send', 'pageview');
         
           <li class="item-toolbox">
             <a
-              class="CIRCLE"
+              class="ROUND_RECT"
               href="/search/"
               rel="noopener noreferrer"
               target="_self"
@@ -263,5 +270,20 @@ ga('send', 'pageview');
   }
 </script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
