@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>[Project] Move-X (ongoing) | Yue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="robotics,ongoing," />
+  
+
+  <meta name="description" content="Move-X By building a omni-directional robot platform, this project is mainly for me to learn mechanics and control, as well as robot state estimation and sensor fusion for autonomous vehicles. Low Lev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Project] Move-X (ongoing)">
+<meta property="og:url" content="https://dbddqy.github.io/2019/08/02/p-move_x/index.html">
+<meta property="og:site_name" content="Yue">
+<meta property="og:description" content="Move-X By building a omni-directional robot platform, this project is mainly for me to learn mechanics and control, as well as robot state estimation and sensor fusion for autonomous vehicles. Low Lev">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.shields.io/badge/Github-Repo-blue">
+<meta property="og:image" content="https://github.com/dbddqy/mobile_robot/raw/master/pics/test_chassis.gif">
+<meta property="og:image" content="https://github.com/dbddqy/mobile_robot/raw/master/pics/test_odom.gif">
+<meta property="og:image" content="https://github.com/dbddqy/mobile_robot/raw/master/pics/test_gmapping.gif">
+<meta property="article:published_time" content="2019-08-02T07:32:48.000Z">
+<meta property="article:modified_time" content="2020-08-02T17:05:05.649Z">
+<meta property="article:author" content="Yue Qi">
+<meta property="article:tag" content="robotics">
+<meta property="article:tag" content="ongoing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/badge/Github-Repo-blue">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Home</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Home</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            All
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Tag
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Project
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Move-X"><span class="toc-text">Move-X</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Low-Level"><span class="toc-text">Low Level:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#High-Level"><span class="toc-text">High Level:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-Chassis-20200709"><span class="toc-text">Testing Chassis 20200709</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-odometry-20200710"><span class="toc-text">Testing odometry 20200710</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-slam-gmapping-20200722"><span class="toc-text">Testing slam-gmapping 20200722</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-p-move_x" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">[Project] Move-X (ongoing)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.08.02</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Yue Qi</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/project/">project</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Move-X"><a href="#Move-X" class="headerlink" title="Move-X"></a>Move-X</h1><p><a href="https://github.com/dbddqy/mobile_robot" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Github-Repo-blue" alt=""></a></p>
+<p><strong>By building a omni-directional robot platform, this project is mainly for me to learn mechanics and control, as well as robot state estimation and sensor fusion for autonomous vehicles.</strong></p>
+<h2 id="Low-Level"><a href="#Low-Level" class="headerlink" title="Low Level:"></a>Low Level:</h2><p>Mecanum wheels locomotion strategy. Using DJI Robomaster hardware.</p>
+<ul>
+<li>mechanical design</li>
+<li>mecanum wheel kinematics</li>
+<li>motor control: closed-loop velocity control</li>
+<li>publish wheel odometry and IMU data through serial communication</li>
+</ul>
+<h2 id="High-Level"><a href="#High-Level" class="headerlink" title="High Level:"></a>High Level:</h2><p>Laser-based SLAM and Navigation.</p>
+<ul>
+<li>implement slam-gmapping</li>
+<li>implement navigation related ros packages</li>
+<li>develop own solution for slam and sensor fusion<br>(combining the theoretical study of <em>Probabilistic Robotics</em> and <em>State Estimation for Robotics</em>)</li>
+</ul>
+<h2 id="Testing-Chassis-20200709"><a href="#Testing-Chassis-20200709" class="headerlink" title="Testing Chassis 20200709"></a>Testing Chassis 20200709</h2><p><img src="https://github.com/dbddqy/mobile_robot/raw/master/pics/test_chassis.gif" alt=""></p>
+<h2 id="Testing-odometry-20200710"><a href="#Testing-odometry-20200710" class="headerlink" title="Testing odometry 20200710"></a>Testing odometry 20200710</h2><p><img src="https://github.com/dbddqy/mobile_robot/raw/master/pics/test_odom.gif" alt=""></p>
+<h2 id="Testing-slam-gmapping-20200722"><a href="#Testing-slam-gmapping-20200722" class="headerlink" title="Testing slam-gmapping 20200722"></a>Testing slam-gmapping 20200722</h2><p><img src="https://github.com/dbddqy/mobile_robot/raw/master/pics/test_gmapping.gif" alt=""></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/07/23/p-robotic_censorship/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/10/01/p-sechs/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              All
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Tag
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Project
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
