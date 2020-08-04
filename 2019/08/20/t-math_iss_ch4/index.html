@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>[Theory] [Advanced Math ISS] ch4 | Yue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="math," />
+  
+
+  <meta name="description" content="Random VariableDefinitionRV is a function $X&#x3D;X(\xi)$ that maps any outcome $\xi$ to a real number. CDF (Cumulative Distribution Function)$$F_X(x) &#x3D; P(X\leq x)&#x3D;P(\xi|X(\xi)\leq x)$$ It is continuous fr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Theory] [Advanced Math ISS] ch4">
+<meta property="og:url" content="https://dbddqy.github.io/2019/08/20/t-math_iss_ch4/index.html">
+<meta property="og:site_name" content="Yue">
+<meta property="og:description" content="Random VariableDefinitionRV is a function $X&#x3D;X(\xi)$ that maps any outcome $\xi$ to a real number. CDF (Cumulative Distribution Function)$$F_X(x) &#x3D; P(X\leq x)&#x3D;P(\xi|X(\xi)\leq x)$$ It is continuous fr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-20T07:27:30.000Z">
+<meta property="article:modified_time" content="2020-08-04T03:26:29.630Z">
+<meta property="article:author" content="Yue Qi">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Home</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Home</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            All
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Tag
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Project
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Random-Variable"><span class="toc-text">Random Variable</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Definition"><span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDF-Cumulative-Distribution-Function"><span class="toc-text">CDF (Cumulative Distribution Function)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PDF-Probability-Density-Function"><span class="toc-text">PDF (Probability Density Function)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gaussian-Distribution"><span class="toc-text">Gaussian Distribution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bivariate-CDF-and-PDF"><span class="toc-text">Bivariate CDF and PDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Marginal-CDF-and-PDF"><span class="toc-text">Marginal CDF and PDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multivariate-Gaussian"><span class="toc-text">Multivariate Gaussian</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-CDF-and-PDF-Given-Event"><span class="toc-text">Conditional CDF and PDF Given Event</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-CDF-and-PDF-Given-PDF-CDF"><span class="toc-text">Conditional CDF and PDF Given PDF&#x2F;CDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Independent-Random-Vector"><span class="toc-text">Independent Random Vector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Expectation"><span class="toc-text">Expectation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moments"><span class="toc-text">Moments</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-t-math_iss_ch4" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">[Theory] [Advanced Math ISS] ch4</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.08.20</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Yue Qi</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/theory/">theory</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Random-Variable"><a href="#Random-Variable" class="headerlink" title="Random Variable"></a>Random Variable</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>RV is a function $X=X(\xi)$ that maps any outcome $\xi$ to a real number.</p>
+<h2 id="CDF-Cumulative-Distribution-Function"><a href="#CDF-Cumulative-Distribution-Function" class="headerlink" title="CDF (Cumulative Distribution Function)"></a>CDF (Cumulative Distribution Function)</h2><p>$$<br>F_X(x) = P(X\leq x)=P(\xi|X(\xi)\leq x)<br>$$</p>
+<p>It is continuous from the right.</p>
+<h2 id="PDF-Probability-Density-Function"><a href="#PDF-Probability-Density-Function" class="headerlink" title="PDF (Probability Density Function)"></a>PDF (Probability Density Function)</h2><p>$$<br>f_X(x) = \frac{d}{dx}F_X(x)<br>\\ F_X(x) = \int_{-\infty}^{x}f_X(u)du<br>$$</p>
+<p>For discrete RV, PDF consists of Dirac functions:<br>$$<br>\delta(x) = \begin{cases}<br>     0， &amp;x\ne0<br>\\ \infty， &amp;x=0<br>\end{cases}<br>$$<br>Properties of Dirac function:<br>$$<br>\begin{align} \int_{-\infty}^{\infty}\delta(x)dx &amp;= 1<br>\\ \int_{-\infty}^{\infty}f(x)\delta(x-x_0)dx &amp;= f(x_0)<br>\end{align}<br>$$</p>
+<h2 id="Gaussian-Distribution"><a href="#Gaussian-Distribution" class="headerlink" title="Gaussian Distribution"></a>Gaussian Distribution</h2><p>$$<br>X \thicksim N(\mu, \sigma^2)<br>\\ f_X(x) = \frac{1}{\sqrt{2\pi}\sigma}exp\lbrace{-\frac{(x-\mu)^2}{2\sigma^2}}\rbrace<br>$$</p>
+<h2 id="Bivariate-CDF-and-PDF"><a href="#Bivariate-CDF-and-PDF" class="headerlink" title="Bivariate CDF and PDF"></a>Bivariate CDF and PDF</h2><p>$$<br>F_{XY}(x,y)=P(X\leq x,Y\leq y)<br>\\  f_XY(x,y)= \frac{\partial^2F_{XY}(x,y)}{\partial x \partial y}<br>$$</p>
+<p>“$F_{XY}(x,y)$ starts with 0, increases two-dimensionally and ends up with 1.”</p>
+<p>“$f_{XY}(x,y)$ is a nonnegative function with volume 1.”</p>
+<h2 id="Marginal-CDF-and-PDF"><a href="#Marginal-CDF-and-PDF" class="headerlink" title="Marginal CDF and PDF"></a>Marginal CDF and PDF</h2><p>CDF: set unneeded variable to $\infty$ :<br>$$<br>F_X(x) = F_{XY}(x, \infty)<br>\\  F_Y(y) = F_{XY}(\infty, y)<br>$$<br>PDF: integrate over unneeded variable:<br>$$<br>f_X(x) = \int_{-\infty}^{\infty}F_{XY}(x,y)dy<br>\\  f_Y(y) = \int_{-\infty}^{\infty}F_{XY}(x,y)dx<br>$$</p>
+<h2 id="Multivariate-Gaussian"><a href="#Multivariate-Gaussian" class="headerlink" title="Multivariate Gaussian"></a>Multivariate Gaussian</h2><p>$$<br>\boldsymbol{X} \thicksim N(\boldsymbol{\mu}, \boldsymbol{C})<br>\\  f_{\boldsymbol{X}}(\boldsymbol{x}) = \frac{1}{(2\pi)^{N/2}det(C)^{1/2}}exp\lbrace{-\frac{1}{2}(\boldsymbol{x}-\boldsymbol{\mu})^T\boldsymbol{C}^{-1}(\boldsymbol{x}-\boldsymbol{\mu})}\rbrace<br>$$</p>
+<p>if <strong><em>C</em></strong> = <strong><em>I</em></strong>:<br>$$<br>f_{\boldsymbol{X}}(\boldsymbol{x}) = \frac{1}{(2\pi)^{N/2}}exp\lbrace{-\frac{1}{2}|\boldsymbol{x}|^2}\rbrace<br>$$</p>
+<h2 id="Conditional-CDF-and-PDF-Given-Event"><a href="#Conditional-CDF-and-PDF-Given-Event" class="headerlink" title="Conditional CDF and PDF Given Event"></a>Conditional CDF and PDF Given Event</h2><p>CDF of X given an event B:<br>$$<br>F_X(x|B) = P(X \leq x|B)=\frac{P(X\leq x \cap B)}{P(B)}<br>$$<br>PDF:<br>$$<br>f_X(x|B) = \frac{d}{dx}F_X(x|B)<br>$$<br>They share same properties as for the conditional probability.</p>
+<p>Law of total CDF/PDF: if<br>$$<br>B_i \cap B_j \neq \empty, \forall i \neq j<br>\\  \cup_{i}^{}{B_i} = \Omega<br>$$<br>then<br>$$<br>F_X(x) = \sum_i F_X(x|B_i)P(B_i)<br>\\  f_X(x) = \sum_i f_X(x|B_i)P(B_i)<br>$$<br>Bayes rule:<br>$$<br>F_X(x|B) = P(B|X \leq x) \frac{F_X(x)}{P(B)}<br>\\  f_X(x|B) = P(B|X = x) \frac{f_X(x)}{P(B)}<br>$$</p>
+<h2 id="Conditional-CDF-and-PDF-Given-PDF-CDF"><a href="#Conditional-CDF-and-PDF-Given-PDF-CDF" class="headerlink" title="Conditional CDF and PDF Given PDF/CDF"></a>Conditional CDF and PDF Given PDF/CDF</h2><p>X and Y are two (continuous) random <strong>vector</strong>. Consider condition B is event {Y|Y&lt;y}, then conditional CDF of X given Y:<br>$$<br>F_\boldsymbol{X}(\boldsymbol{x}|\boldsymbol{Y}&lt;\boldsymbol{y})=P(\boldsymbol{X}&lt;\boldsymbol{x}|\boldsymbol{Y}&lt;\boldsymbol{y})=\frac{F_{\boldsymbol{X},\boldsymbol{Y}}(\boldsymbol{x},\boldsymbol{y})}{F_\boldsymbol{Y}(\boldsymbol{y})}<br>$$<br>PDF can be given with B = {y &lt; Y &lt; y + dy}, followed by dy-&gt;0:<br>$$<br>f_\boldsymbol{X}(\boldsymbol{x}|\boldsymbol{Y}=\boldsymbol{y})=\frac{f_{\boldsymbol{X},\boldsymbol{Y}}(\boldsymbol{x},\boldsymbol{y})}{f_\boldsymbol{Y}(\boldsymbol{y})}<br>$$<br>And Bayes rule:<br>$$<br>f_\boldsymbol{X}(\boldsymbol{x}|\boldsymbol{Y}=\boldsymbol{y})=f_\boldsymbol{Y}(\boldsymbol{y}|\boldsymbol{X}=\boldsymbol{x})\frac{f_{\boldsymbol{X},\boldsymbol{Y}}(\boldsymbol{x},\boldsymbol{y})}{f_\boldsymbol{Y}(\boldsymbol{y})}<br>$$</p>
+<h2 id="Independent-Random-Vector"><a href="#Independent-Random-Vector" class="headerlink" title="Independent Random Vector"></a>Independent Random Vector</h2><p>X and Y are independent:<br>$$<br>F_{\boldsymbol{X},\boldsymbol{Y}}(\boldsymbol{x},\boldsymbol{y})=F_\boldsymbol{X}(\boldsymbol{x})F_\boldsymbol{Y}(\boldsymbol{y})<br>\\  f_{\boldsymbol{X},\boldsymbol{Y}}(\boldsymbol{x},\boldsymbol{y})=f_\boldsymbol{X}(\boldsymbol{x})f_\boldsymbol{Y}(\boldsymbol{y})<br>$$<br>Properties:</p>
+<p>P1: Conditional PDF is the same as unconditional ones.</p>
+<p>P2: h(x) and g(y) also independent.<br>$$<br>f_\boldsymbol{X}(\boldsymbol{x}|\boldsymbol{y})=f_\boldsymbol{X}(\boldsymbol{x})<br>\\  f_{\boldsymbol{X},\boldsymbol{Y}}(h(\boldsymbol{x}),g(\boldsymbol{y}))=f_\boldsymbol{X}(h(\boldsymbol{x}))f_\boldsymbol{Y}(g(\boldsymbol{y}))<br>$$</p>
+<h2 id="Expectation"><a href="#Expectation" class="headerlink" title="Expectation"></a>Expectation</h2><p>$$<br>E(X)= \int xF_X(x)dx<br>$$</p>
+<h2 id="Moments"><a href="#Moments" class="headerlink" title="Moments"></a>Moments</h2><p>$\boldsymbol{\mu}=E(\boldsymbol{X})$ : mean vector of <strong><em>X</em></strong></p>
+<p>$r_{ij}=E(X_iX_j)$ : correlation between $X_i$ and $X_j$</p>
+<p>$r_{ii}=E(X_i^2)$ : 2. moment of $X_i$</p>
+<p>$\boldsymbol{R}=E(\boldsymbol{X}\boldsymbol{X}^T)$ : correlation matrix of <strong><em>X</em></strong></p>
+<p>$c_{ij}=E((X_i-\mu_i)(X_j-\mu_j))$ : covariance between $X_i$ and $X_j$</p>
+<p>$c_{ii}=E((X_i-\mu_i)^2)=\sigma_i^2$ : variance of $X_i$ </p>
+<p>$\boldsymbol{C}=E((\boldsymbol{X-\mu})(\boldsymbol{X-\mu})^T)$ : covariance matrix of <strong><em>X</em></strong></p>
+
+    
+  </div>
+
+</article>
+
+
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/08/19/t-math_iss_ch3/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/08/26/t-intro_to_robotics_ch3/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              All
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Tag
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Project
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

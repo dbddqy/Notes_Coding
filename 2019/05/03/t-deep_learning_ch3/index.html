@@ -22,13 +22,13 @@
 <meta property="og:site_name" content="Yue">
 <meta property="og:description" content="Machine Learning BasicsEstimate of PDF and CDF from datax(n), n&#x3D;1,2,…,N are i.i.d. samples drawn from $p(x) \thicksim N(0, 1)$. The empirical PDF and CDF can be calculated as:$$\hat{p}(x)&#x3D;\frac{1}{N}\">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://dbddqy.github.io/2019/05/03/t-deep_learning_ch3/pics/pdf_cdf_from_data.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/pdf_cdf_from_data.png">
 <meta property="article:published_time" content="2019-05-03T12:23:00.000Z">
-<meta property="article:modified_time" content="2020-08-03T23:27:27.122Z">
+<meta property="article:modified_time" content="2020-08-03T23:32:18.730Z">
 <meta property="article:author" content="Yue Qi">
 <meta property="article:tag" content="deep learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://dbddqy.github.io/2019/05/03/t-deep_learning_ch3/pics/pdf_cdf_from_data.png">
+<meta name="twitter:image" content="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/pdf_cdf_from_data.png">
 
   
 
@@ -236,7 +236,7 @@ ga('send', 'pageview');
   <div class="article-content">
     
       <h1 id="Machine-Learning-Basics"><a href="#Machine-Learning-Basics" class="headerlink" title="Machine Learning Basics"></a>Machine Learning Basics</h1><h2 id="Estimate-of-PDF-and-CDF-from-data"><a href="#Estimate-of-PDF-and-CDF-from-data" class="headerlink" title="Estimate of PDF and CDF from data"></a>Estimate of PDF and CDF from data</h2><p>x(n), n=1,2,…,N are i.i.d. samples drawn from $p(x) \thicksim N(0, 1)$. The empirical PDF and CDF can be calculated as:<br>$$<br>\hat{p}(x)=\frac{1}{N}\sum_{x=1}^N \delta(x-x(n))<br>\\ \hat{F}(x)=\frac{1}{N}\sum_{x=1}^N u(x-x(n))<br>$$<br>u(x) is the unit step function and $\delta$(x) is Dirac function.</p>
-<p><img src="pics/pdf_cdf_from_data.png" alt=""></p>
+<p><img src="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/pdf_cdf_from_data.png" alt=""></p>
 <h2 id="Kullback–Leibler-Divergence"><a href="#Kullback–Leibler-Divergence" class="headerlink" title="Kullback–Leibler Divergence"></a>Kullback–Leibler Divergence</h2><p>Let p(x) and q(x) be two distribution of random vector <strong>x</strong><br>$$<br>D_{KL}(p||q) = \int p(x)ln(\frac{p(x)}{q(x)})dx = E_{x\thicksim p}\frac{p(x)}{q(x)} \overset{disc}{=} \sum_{i=1}^cln(\frac{p(x)}{q(x)})<br>$$<br>Properties:</p>
 <ol>
 <li>non-negative</li>
@@ -260,7 +260,7 @@ ga('send', 'pageview');
     <a class="show pull-left" href="/2019/04/02/p-animation/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2019/07/21/p-robotic_censorship/">
+    <a class="show pull-right" href="/2019/05/03/t-deep_learning_ch4/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>

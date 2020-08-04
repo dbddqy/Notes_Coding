@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>[Theory] [Intro to Robotics, Mechanics and Control] ch5 | Yue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="robotics,Intro to Robotics, Mechanics and Control," />
+  
+
+  <meta name="description" content="Jacobians: velocities and static forcesRelative Velocity${}^A ({}^B V_{Q})$ is the velocity of Q relative to {B}, described in {A} ${}^A ({}^A V_{Q})$ can be written as ${}^A V_{Q}$ ${}^U V_{CORG}$ ca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Theory] [Intro to Robotics, Mechanics and Control] ch5">
+<meta property="og:url" content="https://dbddqy.github.io/2019/09/23/t-intro_to_robotics_ch5/index.html">
+<meta property="og:site_name" content="Yue">
+<meta property="og:description" content="Jacobians: velocities and static forcesRelative Velocity${}^A ({}^B V_{Q})$ is the velocity of Q relative to {B}, described in {A} ${}^A ({}^A V_{Q})$ can be written as ${}^A V_{Q}$ ${}^U V_{CORG}$ ca">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-23T18:02:14.000Z">
+<meta property="article:modified_time" content="2020-08-04T03:07:50.334Z">
+<meta property="article:author" content="Yue Qi">
+<meta property="article:tag" content="robotics">
+<meta property="article:tag" content="Intro to Robotics, Mechanics and Control">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Home</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Home</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            All
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Tag
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Project
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Jacobians-velocities-and-static-forces"><span class="toc-text">Jacobians: velocities and static forces</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Relative-Velocity"><span class="toc-text">Relative Velocity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observation-of-motion-in-B-from-A"><span class="toc-text">Observation of motion in {B} from {A}</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Velocity-“propagation”"><span class="toc-text">Velocity “propagation”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jacobian-6-N"><span class="toc-text">Jacobian (6*N)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Singularity"><span class="toc-text">Singularity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Static-force"><span class="toc-text">Static force</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-t-intro_to_robotics_ch5" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">[Theory] [Intro to Robotics, Mechanics and Control] ch5</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.09.23</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Yue Qi</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/theory/">theory</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Jacobians-velocities-and-static-forces"><a href="#Jacobians-velocities-and-static-forces" class="headerlink" title="Jacobians: velocities and static forces"></a>Jacobians: velocities and static forces</h1><h3 id="Relative-Velocity"><a href="#Relative-Velocity" class="headerlink" title="Relative Velocity"></a>Relative Velocity</h3><p>${}^A ({}^B V_{Q})$ is the velocity of Q relative to {B}, described in {A}</p>
+<p>${}^A ({}^A V_{Q})$ can be written as ${}^A V_{Q}$</p>
+<p>${}^U V_{CORG}$ can be written as $v_c$ (U is the world frame)</p>
+<h3 id="Observation-of-motion-in-B-from-A"><a href="#Observation-of-motion-in-B-from-A" class="headerlink" title="Observation of motion in {B} from {A}"></a>Observation of motion in {B} from {A}</h3><p>$$<br>{}^AV_Q={}^AV_{BORG}+{}^A_B R {}^B V_Q + {}^A \Omega_B \times {}^A_B R {}^B Q \tag{5-13}<br>$$</p>
+<p>three parts:</p>
+<ul>
+<li>velocity of {B} origin relative to {A}</li>
+<li>velocity of Q relative to {B}, described in {A}</li>
+<li>effect caused by rotation of {B}, relative to {A}</li>
+</ul>
+<h3 id="Velocity-“propagation”"><a href="#Velocity-“propagation”" class="headerlink" title="Velocity “propagation”"></a>Velocity “propagation”</h3><p>a special case of (5-13)</p>
+<p>$$<br>{}^{i+1}\omega_{i+1} = {}^{i+1}_ iR {}^i\omega_i + \dot{\theta} _{i+1} {}^{i+1}\hat{Z} _{i+1} \tag{5-45}<br>$$</p>
+<p>$$<br>{}^{i+1}v_{i+1} = {}^{i+1}_ iR({}^iv_i+{}^i\omega_i \times {}^iP_{i+1}) \tag{5-46}<br>$$</p>
+<h3 id="Jacobian-6-N"><a href="#Jacobian-6-N" class="headerlink" title="Jacobian (6*N)"></a>Jacobian (6*N)</h3><p>$$<br>\begin{bmatrix} v \\ \omega \end{bmatrix} = J(\theta)\dot{\theta} \tag{5-64}<br>$$</p>
+<p>$$<br>J(\theta) = \begin{bmatrix}<br>\hat{Z}_0 \times (O_N - O_0) &amp; \hat{Z}_1 \times (O_N - O_1) &amp; \cdots \\<br>\hat{Z}_0 &amp; \hat{Z}_1 &amp; \cdots<br>\end{bmatrix}<br>$$</p>
+<p>transform 6*6 jacobian from {B} to {A}:<br>$$<br>{}^A  J(\theta) = \begin{bmatrix} {}^A_B  R &amp; 0 \\ 0 &amp; {}^A_B  R \end{bmatrix} {}^B  J(\theta) \tag{5-71}<br>$$</p>
+<h3 id="Singularity"><a href="#Singularity" class="headerlink" title="Singularity"></a>Singularity</h3><p>$$<br>det(J(\theta)) = 0<br>$$</p>
+<ul>
+<li>Workspace-boundary singularities: when it is fully stretched out or folded back</li>
+<li>Workspace-interior singularities: when multiple joints line up</li>
+</ul>
+<h3 id="Static-force"><a href="#Static-force" class="headerlink" title="Static force"></a>Static force</h3><p>According to the principle of virtual work:<br>$$<br>\tau = J^T \mathcal{F}<br>$$<br>$\mathcal{F}$ consists of force and moment at the end, which can be mapped to joint torque by jacobian transpose</p>
+
+    
+  </div>
+
+</article>
+
+
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/09/12/t-intro_to_robotics_ch4/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/10/01/p-sechs/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              All
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Tag
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Project
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

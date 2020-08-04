@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>[Theory] [Detection and Pattern Recognition] ch4 | Yue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="detection and pattern recognition," />
+  
+
+  <meta name="description" content="Supervised LearningTemplate MatchingNearest Mean  Note:  Mahalanobis Distance is robust to feature transforms multi-class classifier fails in non-linear-separable dataset.  K-Nearest Neighbor  Note:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Theory] [Detection and Pattern Recognition] ch4">
+<meta property="og:url" content="https://dbddqy.github.io/2019/11/04/t-detection_pattern_recognition_ch4/index.html">
+<meta property="og:site_name" content="Yue">
+<meta property="og:description" content="Supervised LearningTemplate MatchingNearest Mean  Note:  Mahalanobis Distance is robust to feature transforms multi-class classifier fails in non-linear-separable dataset.  K-Nearest Neighbor  Note:">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/nearest_mean.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/k_nearesr_neighbor.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/gaussian_classifier.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/GMM_0.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/GMM_1.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/hard_SVM.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/soft_SVM.png">
+<meta property="article:published_time" content="2019-11-04T20:12:58.000Z">
+<meta property="article:modified_time" content="2020-08-04T02:15:56.570Z">
+<meta property="article:author" content="Yue Qi">
+<meta property="article:tag" content="detection and pattern recognition">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/nearest_mean.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Home</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Home</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            All
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Tag
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Project
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Template-Matching"><span class="toc-text">Template Matching</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nearest-Mean"><span class="toc-text">Nearest Mean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#K-Nearest-Neighbor"><span class="toc-text">K-Nearest Neighbor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bayes-plug-in"><span class="toc-text">Bayes plug-in</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gaussian-Classifier"><span class="toc-text">Gaussian Classifier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Naive-Gaussian"><span class="toc-text">Naive Gaussian</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gaussian-Mixture-Model-GMM"><span class="toc-text">Gaussian Mixture Model (GMM)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Discriminant-Function"><span class="toc-text">Discriminant Function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Network"><span class="toc-text">Neural Network</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Support-Vector-Machine"><span class="toc-text">Support Vector Machine</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Validation"><span class="toc-text">Validation</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-t-detection_pattern_recognition_ch4" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">[Theory] [Detection and Pattern Recognition] ch4</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.11.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Yue Qi</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/theory/">theory</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h1><h2 id="Template-Matching"><a href="#Template-Matching" class="headerlink" title="Template Matching"></a>Template Matching</h2><h3 id="Nearest-Mean"><a href="#Nearest-Mean" class="headerlink" title="Nearest Mean"></a>Nearest Mean</h3><img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/nearest_mean.png" style="zoom:80%;" />
+
+<p>Note:</p>
+<ul>
+<li><strong>Mahalanobis Distance</strong> is robust to feature transforms</li>
+<li>multi-class classifier</li>
+<li>fails in <strong>non-linear-separable</strong> dataset.</li>
+</ul>
+<h3 id="K-Nearest-Neighbor"><a href="#K-Nearest-Neighbor" class="headerlink" title="K-Nearest Neighbor"></a>K-Nearest Neighbor</h3><img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/k_nearesr_neighbor.png" style="zoom: 67%;" />
+
+<p>Note:</p>
+<ul>
+<li>simple and very robust</li>
+<li>k=1 always leads to overfitting</li>
+<li>multi-class classifier</li>
+<li>search for nearest neighbor is super expensive, need special data structure like kd-tree, octree to speed up.</li>
+</ul>
+<h2 id="Bayes-plug-in"><a href="#Bayes-plug-in" class="headerlink" title="Bayes plug-in"></a>Bayes plug-in</h2><h3 id="Gaussian-Classifier"><a href="#Gaussian-Classifier" class="headerlink" title="Gaussian Classifier"></a>Gaussian Classifier</h3><img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/gaussian_classifier.png" style="zoom:80%;" />
+
+<p>Note:</p>
+<ul>
+<li>becomes nearest mean if all classes have identical C and $\mu$</li>
+<li>need lots of data, usually around 10 times the vector length d</li>
+<li>fails in <strong>non-linear-separable</strong> dataset.</li>
+</ul>
+<h3 id="Naive-Gaussian"><a href="#Naive-Gaussian" class="headerlink" title="Naive Gaussian"></a>Naive Gaussian</h3><p>just assume C is diagonal, reduce training time and amount of required data.</p>
+<h3 id="Gaussian-Mixture-Model-GMM"><a href="#Gaussian-Mixture-Model-GMM" class="headerlink" title="Gaussian Mixture Model (GMM)"></a>Gaussian Mixture Model (GMM)</h3><img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/GMM_0.png" style="zoom: 80%;" />
+
+<img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/GMM_1.png" style="zoom:80%;" />
+
+<p>Note:</p>
+<ul>
+<li>versatile, can approximate many real-life distributions</li>
+<li>sensitive to the choice or estimation of model orders Mj</li>
+<li>nonconvex optimization, possible convergence to local optimum, sensitive to initialization of EM</li>
+</ul>
+<h2 id="Discriminant-Function"><a href="#Discriminant-Function" class="headerlink" title="Discriminant Function"></a>Discriminant Function</h2><p>This approach can be considered as directly modeling posteriori with estimating the likelihood.</p>
+<h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><p>see course deep learning</p>
+<h3 id="Support-Vector-Machine"><a href="#Support-Vector-Machine" class="headerlink" title="Support Vector Machine"></a>Support Vector Machine</h3><p>basic ideas:</p>
+<ul>
+<li>binary classifier</li>
+<li>use a linear discriminant function</li>
+</ul>
+<p>new ideas:</p>
+<ul>
+<li>non-linear feature mapping (kernel functions)</li>
+<li>maximum margin (instead of least squares)</li>
+<li>convex optimization</li>
+</ul>
+<p><strong>Hard margin SVM:</strong></p>
+<img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/hard_SVM.png" style="zoom:80%;" />
+
+<p>Note:</p>
+<ul>
+<li>dataset <strong>must be linear separable</strong></li>
+</ul>
+<p><strong>Soft margin SVM:</strong></p>
+<img src="https://github.com/dbddqy/Note/raw/master/Detection_Pattern_Recognition/pics/soft_SVM.png" style="zoom:80%;" />
+
+<p>Note:</p>
+<ul>
+<li>can solve significantly larger set of problems</li>
+<li>sensitive to the choice of hyperparameters $\gamma$ and C. They have to be optimized</li>
+</ul>
+<p><strong>Multi-class SVM:</strong> </p>
+<ol>
+<li><p>one against one</p>
+<ul>
+<li>need to train $\tbinom{c}{2}$ SVMs for all pairs of class</li>
+<li>the class with most wins wins</li>
+</ul>
+</li>
+<li><p>one against the rest</p>
+<ul>
+<li>need to train c SVMs</li>
+<li>choose the class with the highest f(x)</li>
+</ul>
+</li>
+<li><p>hierarchical</p>
+</li>
+</ol>
+<h2 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a>Validation</h2><p>k-fold cross validation: (k − 2)/1/1 folds for training/validation/test</p>
+
+    
+  </div>
+
+</article>
+
+
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/11/04/t-detection_pattern_recognition_ch3/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/11/07/t-detection_pattern_recognition_ch5/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              All
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Tag
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Project
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
