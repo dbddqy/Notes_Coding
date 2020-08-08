@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>[Exercise] Multi-class SVM for solving MNIST | Yue</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="detection and pattern recognition," />
+  
+
+  <meta name="description" content="Multi-class SVM for solving MNIST Use one against the rest strategy, so 10 SVMs are trained. They are stored in class TenClassSVM: 1234567891011121314151617class TenClassSVM:    def __init__(self, _al">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Exercise] Multi-class SVM for solving MNIST">
+<meta property="og:url" content="https://dbddqy.github.io/2019/11/20/e-svm_mnist/index.html">
+<meta property="og:site_name" content="Yue">
+<meta property="og:description" content="Multi-class SVM for solving MNIST Use one against the rest strategy, so 10 SVMs are trained. They are stored in class TenClassSVM: 1234567891011121314151617class TenClassSVM:    def __init__(self, _al">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.shields.io/badge/Github-Source%20Code-blue">
+<meta property="article:published_time" content="2019-11-20T19:40:26.000Z">
+<meta property="article:modified_time" content="2020-08-08T04:20:55.174Z">
+<meta property="article:author" content="Yue Qi">
+<meta property="article:tag" content="detection and pattern recognition">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/badge/Github-Source%20Code-blue">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Home</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Home</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            All
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Tag
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Project
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Multi-class-SVM-for-solving-MNIST"><span class="toc-text">Multi-class SVM for solving MNIST</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-e-svm_mnist" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">[Exercise] Multi-class SVM for solving MNIST</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.11.20</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Yue Qi</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/exercise/">exercise</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Multi-class-SVM-for-solving-MNIST"><a href="#Multi-class-SVM-for-solving-MNIST" class="headerlink" title="Multi-class SVM for solving MNIST"></a>Multi-class SVM for solving MNIST</h1><p><a href="https://github.com/dbddqy/Note/tree/master/Detection_Pattern_Recognition/exercise_SVM_MNIST" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Github-Source%20Code-blue" alt=""></a></p>
+<p>Use one against the rest strategy, so 10 SVMs are trained. They are stored in class TenClassSVM:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TenClassSVM</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, _alphas, _xs, _ys, _ws, _gamma, _kernel, _C)</span>:</span></span><br><span class="line">        self.gamma = _gamma</span><br><span class="line">        self.kernel = _kernel</span><br><span class="line">        self.C = _C</span><br><span class="line">        self.alphas = _alphas</span><br><span class="line">        self.xs = _xs</span><br><span class="line">        self.ys = _ys</span><br><span class="line">        self.ws = _ws</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, x, _label)</span>:</span></span><br><span class="line">        alpha_use = self.alphas[_label]</span><br><span class="line">        x_use = self.xs[_label]</span><br><span class="line">        y_use = self.ys[_label]</span><br><span class="line">        pred = self.ws[_label]</span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> range(alpha_use.shape[<span class="number">0</span>]):</span><br><span class="line">            pred += (alpha_use[index][<span class="number">0</span>] * y_use[index][<span class="number">0</span>] * self.kernel(x_use[index], x, self.gamma))</span><br><span class="line">        <span class="keyword">return</span> pred</span><br></pre></td></tr></table></figure>
+
+<p>PCA for feature dimension reduction.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PCA</span></span><br><span class="line">x_train_flattened = np.array(x_train.reshape([N, <span class="number">28</span>*<span class="number">28</span>, <span class="number">1</span>]), dtype=np.float32)</span><br><span class="line">R = np.einsum(<span class="string">"ijk, ilk -&gt; ijl"</span>, x_train_flattened, x_train_flattened).mean(axis=<span class="number">0</span>)</span><br><span class="line">e_vals, e_vecs = np.linalg.eig(R)</span><br><span class="line">W = e_vecs[:, :<span class="number">50</span>]</span><br><span class="line">x_train_reduced = W.T.dot(x_train_flattened.reshape([N, <span class="number">28</span>*<span class="number">28</span>]).T).T</span><br></pre></td></tr></table></figure>
+
+<p>The training process of a SVM:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainSVM</span><span class="params">(x, y, _kernel, _gamma, _C)</span>:</span></span><br><span class="line">    n = y.shape[<span class="number">0</span>]</span><br><span class="line">    P_Mat = get_P_Mat(x, y, kernel=_kernel, _gamma=_gamma)</span><br><span class="line">    <span class="comment"># optimizaton</span></span><br><span class="line">    P = matrix(P_Mat)</span><br><span class="line">    q = matrix(-np.ones([n, <span class="number">1</span>]))</span><br><span class="line">    <span class="comment"># 2*n inequality constraints</span></span><br><span class="line">    G = matrix(np.vstack([-np.eye(n), np.eye(n)]))</span><br><span class="line">    h = matrix(np.vstack([np.zeros([n, <span class="number">1</span>]), _C * np.ones([n, <span class="number">1</span>])]))</span><br><span class="line">    <span class="comment"># 1 equality constraint</span></span><br><span class="line">    A = matrix(y.T)</span><br><span class="line">    b = matrix(<span class="number">0.</span>)</span><br><span class="line">    sol = solvers.qp(P, q, G, h, A, b)</span><br><span class="line">    alpha = np.array(sol[<span class="string">'x'</span>])</span><br><span class="line">    <span class="comment"># get SVs and SOs</span></span><br><span class="line">    SV, SO = [], []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">if</span> alpha[i][<span class="number">0</span>] &lt; <span class="number">0.001</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> abs(alpha[i][<span class="number">0</span>] - _C) &gt; <span class="number">0.001</span>:</span><br><span class="line">            SV.append(i)</span><br><span class="line">        SO.append(i)</span><br><span class="line">    <span class="comment"># calculate b</span></span><br><span class="line">    w0 = <span class="number">0.</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> SV:</span><br><span class="line">        w0 += y[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> SO:</span><br><span class="line">            w0 -= alpha[j][<span class="number">0</span>] * y[j][<span class="number">0</span>] * P_Mat[j][i]</span><br><span class="line">    w0 /= len(SV)</span><br><span class="line">    <span class="keyword">return</span> alpha[SO], x[SO], y[SO], w0</span><br></pre></td></tr></table></figure>
+
+<p>Save the load models:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># save model</span></span><br><span class="line">model = TenClassSVM(alphas, xs, ys, ws, gamma, kernel, C)</span><br><span class="line">f = open(<span class="string">'model_1.pickle'</span>, <span class="string">'wb'</span>)</span><br><span class="line">pickle.dump(model, f)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># load model</span></span><br><span class="line">f = open(<span class="string">'model_1.pickle'</span>, <span class="string">'rb'</span>)</span><br><span class="line">model = pickle.load(f)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<p>Make prediction:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(x, label, kernel, _gamma)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> alphas, SOs, ws</span><br><span class="line">    <span class="keyword">global</span> x_train_reduced, y_train</span><br><span class="line">    pred = ws[label]</span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(alphas[label].shape[<span class="number">0</span>]):</span><br><span class="line">        pred += (alphas[label][index][<span class="number">0</span>] * y_train[SOs[label][index]] * kernel(x_train_reduced[SOs[label][index]], x, _gamma))</span><br><span class="line">    <span class="keyword">return</span> pred</span><br></pre></td></tr></table></figure>
+
+<p>Final result tends to over-fitting (perhaps gamma value has to be further tuned):</p>
+<blockquote>
+<p>training error rate: 0.007500<br>test error rate: 0.100000</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/11/16/t-detection_pattern_recognition_ch6/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/02/06/p-robotic_craftsmanship/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">Close</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              All
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Tag
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Project
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

@@ -23,9 +23,11 @@
 <meta property="og:description" content="Fully Connected Neural NetworksModel Architecture Activation Functions Linear (identity):  $$\phi(a) &#x3D; a$$2. Unit step: $$\phi(a) &#x3D; u(a) &#x3D; \begin{cases}     1 &amp;a\ge0\\ 0 &amp;a&lt;0\end{cases}$$">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/model.png">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/BP_0.jpg">
+<meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/BP_1.jpg">
 <meta property="og:image" content="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/minibatch.png">
 <meta property="article:published_time" content="2019-05-03T12:28:04.000Z">
-<meta property="article:modified_time" content="2020-08-06T22:25:48.136Z">
+<meta property="article:modified_time" content="2020-08-07T04:56:26.316Z">
 <meta property="article:author" content="Yue Qi">
 <meta property="article:tag" content="deep learning">
 <meta name="twitter:card" content="summary">
@@ -289,7 +291,9 @@ ga('send', 'pageview');
 <li>minimum requirement for universal approximation: $W_2\phi_1(W_1x_0+b_1)+b_2$</li>
 </ul>
 <h2 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h2><p>L2 loss (assuming true distribution y is estimation + white Gaussian noise):<br>$$<br>L(\theta)=\sum_{n=1}^N||y(n)-f(x(n);\theta)||^2<br>$$<br>L1 loss (assuming noise follows Laplace distribution):<br>$$<br>L(\theta)=\sum_{n=1}^N|y(n)-f(x(n);\theta)|<br>$$<br>Categorical cross entropy for classification:<br>$$<br>L(\theta)=\sum_{n=1}^N[-y^T(n)ln(f(x(n);\theta))]<br>$$</p>
-<h2 id="Back-Propagation"><a href="#Back-Propagation" class="headerlink" title="Back Propagation"></a>Back Propagation</h2><h2 id="Epoch-and-Mini-batch"><a href="#Epoch-and-Mini-batch" class="headerlink" title="Epoch and Mini-batch"></a>Epoch and Mini-batch</h2><p><img src="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/minibatch.png" alt=""></p>
+<h2 id="Back-Propagation"><a href="#Back-Propagation" class="headerlink" title="Back Propagation"></a>Back Propagation</h2><p><img src="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/BP_0.jpg" alt=""></p>
+<p><img src="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/BP_1.jpg" alt=""></p>
+<h2 id="Epoch-and-Mini-batch"><a href="#Epoch-and-Mini-batch" class="headerlink" title="Epoch and Mini-batch"></a>Epoch and Mini-batch</h2><p><img src="https://github.com/dbddqy/Note/raw/master/Deep_Learning/pics/minibatch.png" alt=""></p>
 
     
   </div>
